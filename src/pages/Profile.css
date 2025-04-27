@@ -1,0 +1,306 @@
+/* Profile.css – Bloomio Pastel Palette */
+
+/* ───────────────────────────────────────────────────
+   GLOBAL VARIABLES (from Home.css :root)
+   --pink, --peach, --blue, --lavender,
+   --outline, --light-bg, --radius,
+   --shadow-light, --shadow-strong
+─────────────────────────────────────────────────── */
+
+/* ─── CONTAINER PRINCIPALE ───────────────────────── */
+.profile-container {
+  width: 100%;
+  padding: 2rem 1rem;
+  background: #fff;
+  /* niente bordo, niente max-width */
+  font-family: 'Poppins', sans-serif;
+  color: rgb(var(--outline));
+  /* mantieni slide-in se vuoi: */
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+
+/* ─── KEYFRAMES SLIDE-IN ─────────────────────────── */
+@keyframes slideInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);      opacity: 1; }
+}
+
+/* ─── HEADER PROFILO ─────────────────────────────── */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.profile-header img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--outline), 0.2);
+  transition: transform 0.3s ease;
+}
+.profile-header img:hover {
+  transform: scale(1.05);
+}
+.profile-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--heading);
+}
+.profile-header p {
+  margin: 0;
+  color: var(--text);
+  font-style: italic;
+}
+.profile-header button {
+  margin-left: auto;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgb(var(--outline));
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.profile-header button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* ─── MODAL PROFILE EDIT ─────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.25s ease;
+  z-index: 1000;
+}
+.modal-overlay.fade-out {
+  animation: fadeOut 0.25s ease forwards;
+}
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-strong);
+  width: 90%;
+  max-width: 420px;
+  position: relative;
+  color: rgb(var(--outline));
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.4s ease-out forwards;
+}
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--heading);
+}
+
+/* Inputs & Preview */
+.modal-content input[type="text"],
+.modal-content input[type="file"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgb(var(--light-bg));
+  border: 1px solid rgba(var(--outline), 0.2);
+  border-radius: var(--radius);
+  margin-bottom: 1.25rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.modal-content input:focus {
+  outline: none;
+  border-color: rgba(var(--peach), 1);
+  box-shadow: 0 0 0 3px rgba(var(--pink), 0.3);
+}
+.modal-content img {
+  display: block;
+  margin: 0 auto 1.5rem;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--outline), 0.2);
+}
+
+/* Buttons */
+.modal-content .save-btn,
+.modal-content .cancel-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  margin-right: 0.5rem;
+}
+.modal-content .save-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgb(var(--outline));
+  box-shadow: var(--shadow-light);
+}
+.modal-content .save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+.modal-content .cancel-btn {
+  background: transparent;
+  color: var(--outline);
+  border: 1.5px solid rgba(var(--outline), 0.2);
+}
+.modal-content .cancel-btn:hover {
+  background: rgba(var(--light-bg), 1);
+}
+
+/* ─── CUSTOM TOGGLE ──────────────────────────────── */
+.custom-toggle {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.custom-toggle button {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--light-bg), 0.5) 0%,
+    rgba(var(--light-bg), 0.5) 100%
+  );
+  border: none;
+  color: rgb(var(--outline));
+  font-weight: 500;
+  cursor: pointer;
+  transition: 
+    background 0.3s ease, 
+    color 0.3s ease,
+    transform 0.2s ease;
+}
+
+/* bottoni inattivi: leggero overlay chiaro per dividere */
+.custom-toggle button:not(.active):hover {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--light-bg), 0.7) 0%,
+    rgba(var(--light-bg), 0.7) 100%
+  );
+}
+
+/* bottone attivo: gradient pastello peach→lavender */
+.custom-toggle button.active {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 0.8) 0%,
+    rgba(var(--lavender), 0.8) 100%
+  );
+  color: rgb(var(--outline));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--outline), 0.15);
+}
+
+/* ─── SEZIONI LISTA ─────────────────────────────── */
+.profile-section-posts,
+.profile-section-likes,
+.profile-section-notifications {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.profile-section-posts li,
+.profile-section-likes li,
+.profile-section-notifications li {
+  background: rgb(var(--light-bg));
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  margin-bottom: 1.5rem;
+  position: relative;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+  border-left: 4px solid rgba(var(--peach), 1);
+}
+.profile-section-posts li strong,
+.profile-section-likes li strong {
+  color: var(--heading);
+}
+.profile-section-notifications li {
+  color: var(--text);
+}
+
+/* ─── MOODBOARD ─────────────────────────────────── */
+.moodboard-gallery {
+  margin-top: 1rem;
+}
+.moodboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.moodboard-card {
+  background: rgb(var(--light-bg));
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  text-align: center;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+  animation-delay: 0.4s;
+}
+.moodboard-card img {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+}
+.moodboard-card p {
+  margin: 0.5rem 0;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1rem;
+    margin: 2rem 1rem;
+  }
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .custom-toggle {
+    flex-direction: column;
+  }
+  .custom-toggle button {
+    text-align: left;
+  }
+  .moodboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

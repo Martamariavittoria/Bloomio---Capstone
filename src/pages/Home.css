@@ -1,0 +1,456 @@
+/* ─── Variables & Global Reset ───────────────────────────────── */
+:root {
+  /* Palette Bloomio */
+  --pink: 248, 193, 205;
+  --peach: 255, 209, 179;
+  --blue: 195, 218, 230;
+  --lavender: 220, 204, 241;
+  --accent-square: 230, 225, 245;
+  --outline: 74, 74, 74;
+
+  /* Theme vars */
+  --bg-light: 247, 247, 247;
+  --bg: rgb(var(--bg-light));
+  --bg-alt: rgba(var(--bg-light), 0.9);
+  --heading: rgb(30, 30, 30);
+  --text: rgb(80, 80, 80);
+  --radius: 8px;
+  --shadow-light: 0 2px 6px rgba(var(--outline), 0.1);
+  --shadow-strong: 0 4px 12px rgba(var(--outline), 0.15);
+}
+
+/* ─── Base & Resets ─────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ─── Container & Background ───────────────────────────── */
+.home-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 3rem 1rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--pink), 0.2)   0%,
+    rgba(var(--peach), 0.2)  25%,
+    rgba(var(--blue), 0.2)   50%,
+    rgba(var(--lavender),0.2)75%,
+    rgba(var(--accent-square),0.2) 100%
+  );
+  background-attachment: fixed;
+  border-radius: var(--radius);
+}
+
+/* ─── Sticky Search ───────────────────────────────────── */
+.sticky-search {
+  position: sticky;
+  top: 1rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  border: 1px solid rgba(var(--outline), 0.2);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-light);
+  transition: box-shadow 0.3s;
+}
+.sticky-search:focus {
+  box-shadow: 0 0 0 3px rgba(var(--pink), 0.3);
+}
+
+/* ─── Page Title ───────────────────────────────────────── */
+.home-title {
+  position: relative;
+  font-size: 2.5rem;
+  color: var(--heading);
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeInDown 0.8s ease-out forwards;
+}
+.home-title::before {
+  content: '';
+  position: absolute;
+  width: 5rem; height: 5rem;
+  top: -1rem; left: calc(50% - 2.5rem);
+  background: rgba(var(--accent-square), 0.5);
+  border-radius: var(--radius);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Post List & Cards ────────────────────────────────── */
+
+/* ─── Post Header & Content ────────────────────────────── */
+.post-header {
+  margin-bottom: 1.5rem;
+}
+.post-title {
+  font-size: 1.75rem;
+  color: var(--heading);
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+.post-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 3px;
+  background: rgba(var(--peach), 1);
+  transition: width 0.4s;
+}
+.post-title:hover::after {
+  width: 100%;
+}
+.post-content {
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* ─── Media (Images, Videos, PDFs) ─────────────────────── */
+.post-image,
+.post-video {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-light);
+}
+.post-pdf {
+  display: block;
+  width: 150px;
+  margin: 1.5rem auto;
+  padding: 0.5rem 1rem;
+  background: rgba(var(--lavender), 1);
+  color: #fff;
+  text-align: center;
+  border-radius: var(--radius);
+  text-decoration: none;
+  box-shadow: var(--shadow-light);
+  transition: background 0.3s;
+}
+.post-pdf:hover {
+  background: rgba(var(--blue), 1);
+}
+
+/* ─── Post List & Cards ────────────────────────────────── */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.post-card {
+  background: #fff;
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  border-image: linear-gradient(
+    to right,
+    rgba(var(--pink),   0.8),
+    rgba(var(--peach),  0.8),
+    rgba(var(--blue),   0.8),
+    rgba(var(--lavender),0.8)
+  ) 1;
+  box-shadow: var(--shadow-strong);
+  overflow: hidden;
+
+  /* slide in iniziale */
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+
+  /* animazione hover */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.post-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(var(--outline), 0.1);
+}
+
+
+/* ─── Author Link ──────────────────────────────────────── */
+.post-author {
+  margin-bottom: 1.5rem;
+}
+.author-username {
+  color: rgba(var(--peach), 1);
+  font-weight: 600;
+  text-decoration: none;
+}
+.author-username:hover {
+  text-decoration: underline;
+}
+
+/* ─── Like & Share Row ─────────────────────────────────── */
+.like-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.like-button,
+.share-button {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
+  cursor: pointer;
+}
+.like-button  { animation-delay: 0.1s; font-size: 1.5rem; background: none; border: none; }
+.share-button {
+  animation-delay: 0.2s;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  border: none;
+  color: rgba(var(--outline), 1);
+  border-radius: var(--radius);
+}
+.like-button:hover,
+.share-button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(var(--outline), 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Comments ────────────────────────────────────────── */
+.comment-section {
+  border-top: 1px solid rgba(var(--outline), 0.2);
+  padding-top: 1.5rem;
+  position: relative;
+}
+.comment-section::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem; right: 1rem;
+  width: 3rem; height: 3rem;
+  opacity: 0.15;
+}
+.comment-preview {
+  background: #fff;
+  border-left: 4px solid rgba(var(--blue), 0.8);
+  padding: 1rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-light);
+  position: relative;
+}
+.comment-preview .delete-comment-button {
+  position: absolute;
+  top: 0.5rem; right: 1rem;
+  opacity: 1;
+  background: none; border: none;
+  cursor: pointer;
+}
+.show-all-comments-btn {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgba(var(--outline), 1);
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+.show-all-comments-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(var(--outline), 0.15);
+}
+.comment-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+.comment-list.expanded {
+  max-height: 600px;
+  opacity: 1;
+  padding: 0.75rem 0;
+}
+.comment {
+  background: var(--bg-alt);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+.comment-date {
+  font-size: 0.8rem;
+  color: var(--text);
+  margin-left: 0.5rem;
+}
+.comment .delete-comment-button {
+  position: absolute;
+  top: 0.5rem; right: 1rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.comment:hover .delete-comment-button {
+  opacity: 1;
+}
+
+/* ─── Comment Form ───────────────────────────────────── */
+.comment-form {
+  display: flex;
+  gap: 0.5rem;
+}
+.comment-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid rgba(var(--outline), 0.2);
+  border-radius: var(--radius);
+  transition: box-shadow 0.3s ease;
+}
+.comment-input:focus {
+  box-shadow: 0 0 0 3px rgba(var(--pink), 0.3);
+}
+.comment-button {
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgba(var(--outline), 1);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.comment-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--outline), 0.15);
+}
+
+/* ─── Modal ──────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal {
+  background: #fff;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-strong);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+.modal h3 {
+  margin-bottom: 1rem;
+  color: var(--heading);
+}
+.modal p {
+  margin-bottom: 1rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+.modal-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(var(--outline), 0.2);
+  border-radius: var(--radius);
+  transition: box-shadow 0.3s ease;
+}
+.modal-input:focus {
+  box-shadow: 0 0 0 3px rgba(var(--pink), 0.3);
+}
+.modal button {
+  margin: 0 0.5rem 0 0;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s ease;
+}
+.modal button:first-of-type {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgba(var(--outline), 1);
+}
+.modal button:first-of-type:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(var(--outline), 0.15);
+}
+.modal button:last-of-type {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--text);
+}
+.modal button:last-of-type:hover {
+  background: var(--text);
+  color: #fff;
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .post-card       { padding: 1.5rem; }
+  .sticky-search   { margin-bottom: 1rem; }
+  .comment-form    { flex-direction: column; }
+  .comment-button  { width: 100%; }
+}
+
+
+.post-card {
+  /* assicuriamoci che il punto di scala sia il centro */
+  transform-origin: center center;
+  /* transizione più marcada */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.post-card:hover {
+  /* alza e ingrandisci del 10% */
+  transform: translateY(-6px) scale(1.40);
+  box-shadow: 0 20px 40px rgba(var(--outline), 0.1);
+}

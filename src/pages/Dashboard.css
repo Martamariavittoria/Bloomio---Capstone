@@ -1,0 +1,282 @@
+/* Dashboard.css – Bloomio Pastel Palette */
+
+/* ───────────────────────────────────────────────────
+   ASSUME GLOBAL :root VARIABLES FROM Home.css:
+   --pink, --peach, --blue, --lavender,
+   --outline, --light-bg, --radius,
+   --shadow-light, --shadow-strong
+─────────────────────────────────────────────────── */
+
+/* ─── CONTAINER PRINCIPALE ───────────────────────── */
+.dashboard-container {
+  max-width: 960px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: rgb(var(--light-bg));
+  /* bordo sfumato pastello */
+  border: 2px solid transparent;
+  border-image: linear-gradient(
+    to right,
+    rgba(var(--pink), 0.8),
+    rgba(var(--peach), 0.8),
+    rgba(var(--blue), 0.8),
+    rgba(var(--lavender), 0.8)
+  ) 1;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-strong);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  /* animazione di ingresso */
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+}
+.dashboard-container h1 {
+  font-size: 2.5rem;
+  color: var(--heading);
+  margin-bottom: 0.5rem;
+}
+.dashboard-container p {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* ─── SLIDE-IN KEYFRAMES ─────────────────────────── */
+@keyframes slideInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* ─── NEW PROJECT FORM ───────────────────────────── */
+.new-project-form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  margin-bottom: 4rem;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+}
+.new-project-form h2 {
+  margin-bottom: 1.5rem;
+  color: var(--heading);
+  font-weight: 500;
+}
+.new-project-form input[type="text"],
+.new-project-form textarea,
+.new-project-form input[type="file"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(var(--outline), 0.2);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.new-project-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.new-project-form input:focus,
+.new-project-form textarea:focus {
+  outline: none;
+  border-color: rgba(var(--peach), 1);
+  box-shadow: 0 0 0 3px rgba(var(--pink), 0.3);
+}
+.new-project-form button.btn.primary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgb(var(--outline));
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.new-project-form button.btn.primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.new-project-form button.btn.primary:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* ─── DASHBOARD PREVIEW ──────────────────────────── */
+.dashboard-preview {
+  margin-top: 2rem;
+}
+.dashboard-preview h2 {
+  font-size: 2rem;
+  color: var(--heading);
+  margin-bottom: 1.5rem;
+}
+.dashboard-preview ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.project-item {
+  background: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  margin-bottom: 1.5rem;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-item:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(var(--outline), 0.1);
+}
+.project-item strong {
+  font-size: 1.25rem;
+  color: var(--heading);
+}
+.project-item em {
+  display: block;
+  margin: 0.5rem 0 1rem;
+  color: var(--text);
+}
+.project-item img,
+.project-item video {
+  display: block;
+  max-width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-light);
+}
+
+/* ─── LINK & BUTTONS ALL’INTERNO DI PROJECT ITEM ─── */
+.project-item a {
+  color: var(--heading);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.project-item a:hover {
+  color: rgba(var(--peach), 1);
+  text-decoration: underline;
+}
+.project-item button.edit-btn,
+.project-item button.delete-btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-right: 0.5rem;
+}
+.project-item button.edit-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgb(var(--outline));
+  border: none;
+  box-shadow: var(--shadow-light);
+}
+.project-item button.edit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-strong);
+}
+.project-item button.delete-btn {
+  background: transparent;
+  color: #e74c3c;
+  border: 1.5px solid #e74c3c;
+}
+.project-item button.delete-btn:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* ─── RESPONSIVENESS ──────────────────────────────── */
+@media (max-width: 768px) {
+  .dashboard-container {
+    margin: 2rem 1rem;
+    padding: 1rem;
+  }
+  .new-project-form,
+  .project-item {
+    padding: 1rem;
+  }
+  .new-project-form h2,
+  .dashboard-preview h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ─── INLINE EDIT FORM ─────────────────────────────── */
+.edit-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: rgb(var(--light-bg));
+  padding: 1rem;
+  border: 1px solid rgba(var(--outline), 0.2);
+  border-radius: var(--radius);
+  box-shadow: inset 0 2px 4px rgba(var(--outline), 0.02);
+  margin-bottom: 1rem;
+}
+.edit-form input[type="text"],
+.edit-form textarea {
+  flex: 1 1 200px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid rgba(var(--outline), 0.2);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.edit-form input:focus,
+.edit-form textarea:focus {
+  outline: none;
+  border-color: rgba(var(--peach), 1);
+  box-shadow: 0 0 0 3px rgba(var(--pink), 0.3);
+}
+.edit-form textarea {
+  resize: vertical;
+  min-height: 120px;
+  max-height: 200px;
+}
+.edit-form .form-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.edit-form .form-buttons button {
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.edit-form .save-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgb(var(--outline));
+  box-shadow: var(--shadow-light);
+}
+.edit-form .save-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-strong);
+}
+.edit-form .cancel-btn {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(var(--outline), 0.2);
+}
+.edit-form .cancel-btn:hover {
+  background: rgba(var(--light-bg), 1);
+}

@@ -1,0 +1,197 @@
+/* SinglePost.css – Bloomio Pastel Palette */
+
+/* ───────────────────────────────────────────────────
+   VARIABLES (ereditate da :root globale)
+─────────────────────────────────────────────────── */
+/* Assicurati che il tuo index.css o Home.css contenga già:
+   --pink, --peach, --blue, --lavender, --outline, --light-bg, --radius, --shadow-light, --shadow-strong
+*/
+
+/* ───────────────────────────────────────────────────
+   CONTAINER PRINCIPALE
+─────────────────────────────────────────────────── */
+.single-post {
+  max-width: 760px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  /* bordo sfumato pastello */
+  border: 2px solid transparent;
+  border-image: linear-gradient(
+    to right,
+    rgba(var(--pink), 0.8),
+    rgba(var(--peach), 0.8),
+    rgba(var(--blue), 0.8),
+    rgba(var(--lavender), 0.8)
+  ) 1;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-strong);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  /* animazione di ingresso */
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+/* ─── Titolo e contenuto ───────────────────────────── */
+@keyframes slideInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);      opacity: 1; }
+}
+
+.single-post h2 {
+  margin-top: 0;
+  color: var(--heading);
+  font-size: 2rem;
+}
+
+.single-post-content {
+  margin: 1rem 0 2rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* ─── Media (Immagini, Video) ─────────────────────── */
+.single-post-image,
+.single-post-video {
+  display: block;
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-light);
+  transition: transform 0.3s ease;
+}
+.single-post-image:hover,
+.single-post-video:hover {
+  transform: scale(1.03);
+}
+
+/* ─── Link PDF ─────────────────────────────────────── */
+.pdf-link {
+  display: block;
+  width: 160px;
+  margin: 1.5rem auto;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgb(var(--outline));
+  text-align: center;
+  border-radius: var(--radius);
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: var(--shadow-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.pdf-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--outline), 0.15);
+}
+
+/* ─── Autore & Data ────────────────────────────────── */
+.single-post-author {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  color: var(--heading);
+}
+
+/* ─── Like Row ─────────────────────────────────────── */
+.like-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.like-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: rgb(var(--outline));
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.like-button:hover {
+  transform: scale(1.2);
+  color: #e25555;
+}
+.like-button.liked {
+  color: #e25555;
+}
+
+/* ─── Commenti ────────────────────────────────────── */
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 250px;
+  overflow-y: auto;
+  border-top: 1px solid rgba(var(--outline), 0.2);
+  padding-top: 1rem;
+}
+.comment {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(var(--outline), 0.1);
+}
+.comment:last-child {
+  border-bottom: none;
+}
+.comment-date {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: var(--text);
+  margin-left: 0.5rem;
+}
+
+/* ─── Comment Form ─────────────────────────────────── */
+.comment-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.comment-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid rgba(var(--outline), 0.2);
+  border-radius: var(--radius);
+  transition: box-shadow 0.3s ease;
+}
+.comment-input:focus {
+  box-shadow: 0 0 0 3px rgba(var(--pink), 0.3);
+}
+.comment-button {
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgb(var(--outline));
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.comment-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--outline), 0.15);
+}
+
+/* ─── Responsive ───────────────────────────────────── */
+@media (max-width: 600px) {
+  .single-post {
+    padding: 1.5rem;
+  }
+  .single-post h2 {
+    font-size: 1.75rem;
+  }
+  .pdf-link,
+  .comment-button {
+    width: 100%;
+  }
+}

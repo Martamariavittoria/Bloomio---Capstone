@@ -1,0 +1,130 @@
+/* Moodboard.css – Bloomio Pastel Palette */
+
+/* ───────────────────────────────────────────────────
+   GLOBAL VARIABLES (from Home.css :root)
+   --pink, --peach, --blue, --lavender,
+   --outline, --light-bg, --radius,
+   --shadow-light, --shadow-strong
+─────────────────────────────────────────────────── */
+
+/* ─── SEARCH BAR ──────────────────────────────────── */
+.moodboard-search {
+  padding: 2rem 1rem;
+  text-align: center;
+  background: rgb(var(--light-bg));
+  box-shadow: var(--shadow-light);
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+.moodboard-search input {
+  padding: 0.75rem 1rem;
+  width: 250px;
+  max-width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid rgba(var(--outline), 0.2);
+  background: #fff;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.moodboard-search input:focus {
+  outline: none;
+  border-color: rgba(var(--peach), 1);
+  box-shadow: 0 0 0 3px rgba(var(--pink), 0.3);
+}
+
+.moodboard-search button {
+  padding: 0.75rem 1rem;
+  margin-left: 0.5rem;
+  border-radius: var(--radius);
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1) 0%,
+    rgba(var(--lavender), 1) 100%
+  );
+  border: none;
+  color: rgb(var(--outline));
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.moodboard-search button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* ─── GRID LAYOUT ────────────────────────────────── */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* ─── RESULT CARD ────────────────────────────────── */
+.result-card {
+  background: rgb(var(--light-bg));
+  /* bordo sfumato pastello */
+  border: 2px solid transparent;
+  border-image: linear-gradient(
+    to right,
+    rgba(var(--pink),   0.8),
+    rgba(var(--peach),  0.8),
+    rgba(var(--blue),   0.8),
+    rgba(var(--lavender),0.8)
+  ) 1;
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.result-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(var(--outline), 0.1);
+}
+
+.result-card img {
+  width: 100%;
+  border-radius: var(--radius);
+  display: block;
+  margin-bottom: 0.75rem;
+  transition: transform 0.3s ease;
+}
+.result-card img:hover {
+  transform: scale(1.03);
+}
+
+/* ─── ANIMATION KEYFRAMES ───────────────────────── */
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 600px) {
+  .moodboard-search {
+    padding: 1.5rem 0.5rem;
+  }
+  .moodboard-search input,
+  .moodboard-search button {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  .results-grid {
+    gap: 1rem;
+  }
+}

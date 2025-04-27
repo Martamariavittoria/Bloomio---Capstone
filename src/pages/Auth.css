@@ -1,0 +1,150 @@
+/* Auth.css – Bloomio Pastel Palette */
+
+/* ───────────────────────────────────────────────────
+   ASSUME GLOBAL :root VARIABLES FROM Home.css:
+   --pink, --peach, --blue, --lavender,
+   --outline, --light-bg, --radius,
+   --shadow-light, --shadow-strong
+─────────────────────────────────────────────────── */
+
+/* ─── CONTAINER PRINCIPALE ───────────────────────── */
+.auth-container {
+  max-width: 400px;
+  margin: 6rem auto;
+  padding: 2rem;
+  background: #fff;
+  /* bordo sfumato pastello */
+  border: 2px solid transparent;
+  border-image: linear-gradient(
+    to right,
+    rgba(var(--pink), 0.8),
+    rgba(var(--peach), 0.8),
+    rgba(var(--blue), 0.8),
+    rgba(var(--lavender), 0.8)
+  ) 1;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  font-family: 'Poppins', sans-serif;
+  color: rgb(var(--outline));
+  /* animazione di ingresso */
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);      opacity: 1; }
+}
+
+/* ─── TITOLI ──────────────────────────────────────── */
+.auth-container h1 {
+  text-align: center;
+  color: var(--heading);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+/* ─── TOGGLE LOGIN/SIGNUP ───────────────────────── */
+.form-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.form-toggle button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  color: rgb(var(--outline));
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.form-toggle button:hover {
+  color: rgba(var(--peach), 1);
+}
+.form-toggle button.active {
+  color: var(--heading);
+  border-color: rgba(var(--peach), 1);
+}
+
+/* ─── CAMPI DI INPUT ─────────────────────────────── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.auth-form input,
+.auth-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgb(var(--light-bg));
+  border: 1px solid rgba(var(--outline), 0.2);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  color: rgb(var(--outline));
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.auth-form input:focus,
+.auth-form select:focus {
+  outline: none;
+  border-color: rgba(var(--peach), 1);
+  box-shadow: 0 0 0 3px rgba(var(--pink), 0.3);
+}
+
+/* ─── BOTTONE INVIO ─────────────────────────────── */
+.auth-form button[type="submit"] {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--peach), 1),
+    rgba(var(--lavender), 1)
+  );
+  color: rgb(var(--outline));
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.auth-form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* ─── LINK AUSILIARI ─────────────────────────────── */
+.auth-form .aux-link {
+  text-align: center;
+  margin-top: 1rem;
+  color: rgb(var(--outline));
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.auth-form .aux-link:hover {
+  color: rgba(var(--peach), 1);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 480px) {
+  .auth-container {
+    margin: 4rem 1rem;
+    padding: 1.5rem;
+  }
+  .form-toggle button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .auth-form input,
+  .auth-form select {
+    padding: 0.65rem 0.8rem;
+    font-size: 0.95rem;
+  }
+  .auth-form button[type="submit"] {
+    padding: 0.65rem 0.8rem;
+    font-size: 0.95rem;
+  }
+}

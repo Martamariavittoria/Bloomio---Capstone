@@ -1,0 +1,181 @@
+/* PublicProfile.css – Bloomio Pastel Palette */
+
+/* ───────────────────────────────────────────────────
+   GLOBAL VARIABLES (from Home.css :root)
+   --pink, --peach, --blue, --lavender,
+   --outline, --light-bg, --radius,
+   --shadow-light, --shadow-strong
+─────────────────────────────────────────────────── */
+
+/* ─── CONTAINER PRINCIPALE ───────────────────────── */
+.public-profile-container {
+  max-width: 960px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: rgb(var(--light-bg));
+  
+  /* bordo sfumato pastello */
+  border: 2px solid transparent;
+  border-image: linear-gradient(
+    to right,
+    rgba(var(--pink),   0.8),
+    rgba(var(--peach),  0.8),
+    rgba(var(--blue),   0.8),
+    rgba(var(--lavender),0.8)
+  ) 1;
+
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-strong);
+  font-family: 'Poppins', sans-serif;
+  color: rgb(var(--outline));
+
+  /* animazione slide-in */
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+
+/* ─── HEADER ─────────────────────────────────────── */
+.public-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.public-profile-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--outline), 0.2);
+  transition: transform 0.3s ease;
+}
+.public-profile-image:hover {
+  transform: scale(1.05);
+}
+.public-profile-bio {
+  font-style: italic;
+  color: var(--text);
+  margin: 0;
+}
+
+/* ─── PALETTE SECTION ───────────────────────────── */
+.palette-section {
+  background: rgb(var(--light-bg));
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+  animation-delay: 0.1s;
+}
+.palette-section h4 {
+  margin: 0 0 1rem;
+  color: var(--heading);
+  font-weight: 500;
+}
+.palette-colors {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.palette-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  /* riempimento con la variabile di colore corrispondente via inline style o classe */
+  box-shadow: var(--shadow-light);
+  transition: transform 0.2s ease;
+}
+.palette-circle:hover {
+  transform: scale(1.1);
+}
+.no-palette-msg {
+  color: var(--text);
+  font-style: italic;
+}
+
+/* ─── POSTS LIST ─────────────────────────────────── */
+.public-post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.public-post-card {
+  background: rgb(var(--light-bg));
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.public-post-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(var(--outline), 0.1);
+}
+.public-post-card h3 {
+  font-size: 1.25rem;
+  color: var(--heading);
+  margin: 0.5rem 0;
+}
+.post-content {
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.post-author {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-top: 1rem;
+}
+.public-post-image,
+.public-post-card video {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-light);
+  transition: transform 0.3s ease;
+}
+.public-post-image:hover,
+.public-post-card video:hover {
+  transform: scale(1.03);
+}
+
+/* ─── PDF LINK ───────────────────────────────────── */
+.pdf-link {
+  display: block;
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: 500;
+  color: rgba(var(--peach), 1);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.pdf-link:hover {
+  color: rgba(var(--lavender), 1);
+  text-decoration: underline;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .public-profile-container {
+    padding: 1rem;
+    margin: 2rem 0;
+  }
+  .public-profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .palette-colors {
+    gap: 0.5rem;
+  }
+  .public-post-list {
+    gap: 1rem;
+  }
+}
